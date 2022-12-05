@@ -73,9 +73,11 @@ See the Picture below
 
 
 ## Credit
-
+HTML5 Template from : (https://html5up.net)
+<p></p>
 This software uses the following open source packages:
-
+<p></p>
+See requirements.txt
 
 ## Screen
 
