@@ -37,32 +37,34 @@ The Initial Purpose of the project was to automate part of my job to spend more 
     <p><strong>Second Stage</strong> oversees the generation of TGD files for all the devices included in the SCADA system. Properties of each device are grouped together in a TGD file linked to the device. </p>
     <p><strong>Third Stage</strong> produce L5x files for AB Programmable logic controllers. The L5x file include ready to use  ladder logic for the system based on the I/O points.</p>
     
-    
+> **Note**
+> This is only  phase two of the code and does not include the full version.
+
+
 ## How It Work
 
 * Either Using API Getting the needed information from Revit software
   <p>OR</p>
 * Uploading a standard Xlsx device list & I/O points based on the engineering drawing of the SCADA system
   <p></p>
-    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    <img  src="static/images/I&C.png"  />
     
     <h3><p>Receive the following:</p></h3>
     
     * <p>The DB file for the SCADA system</p>
     
-    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    <img src="static/images/DBifix.png"  />
     
     * <p>The TGD files for all the devices in the SCADA system</p>
-    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    <img src="static/images/TGD.png"  />
     
     * <p>The L5x file  containing the standard baseload of the SCADA system</p>
     
-    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    <img src="static/images/ABladder.png"  />
 
 
 
-> **Note**
-> This is only  phase two of the code and does not include the full version.
+
 
 
 ## CodeFlow
