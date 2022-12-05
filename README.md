@@ -4,17 +4,19 @@
   <br>
   <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Markdownify" width="200">
   <br>
-  Title
+  Development Tools
   <br>
 </h1>
 
-<h4 align="center">ablalblablalblablba .</h4>
+
 
 <p align="center">
-  <img width="75px" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="ReactJS Icon" />
-  <img width="75px" src="https://github.com/Pedro-Murilo/icons-for-readme/blob/main/.github/react-icon.svg" alt="ReactJS Icon" />
-  <img width="75px" src="https://github.com/Pedro-Murilo/icons-for-readme/blob/main/.github/react-icon.svg" alt="ReactJS Icon" />
-  <img width="75px" src="https://github.com/Pedro-Murilo/icons-for-readme/blob/main/.github/react-icon.svg" alt="ReactJS Icon" />
+  <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+  <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/2369/2369466.png"  />
+  <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/288/288882.png" />
+  <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/8167/8167819.png"  />
+  <img width="75px" hspace="20" height="75" src="https://www.kindpng.com/picc/m/188-1882416_flask-python-logo-hd-png-download.png" alt="Flask Python Logo, HD Png Download@kindpng.com"  />
+  
 </p>
 
 <p align="center">
@@ -28,22 +30,45 @@
 
 ## Purpose
 
-The Initial.
+The Initial Purpose of the project was to automate part of my job to spend more time learning new technologies, but it provided more value as it reduced the life cycle of each project between 2-6 weeks (depending on the project). Sequentially, it allowed the department to win more projects from the city of Toronto and the region by bidding 5 to 10 percent lower on the projects.
 
+<p>This Project consist of <strong>three stages</strong>  on SCADA programming stage :</p>
+    <p><strong>First Stage</strong> includes the automated production of ready to use database for IFix software.All the  associated SCADA signals and alarms are generated in a ready to import CSV files in accordance with IFix 5.5+ Software.</p>
+    <p><strong>Second Stage</strong> oversees the generation of TGD files for all the devices included in the SCADA system. Properties of each device are grouped together in a TGD file linked to the device. </p>
+    <p><strong>Third Stage</strong> produce L5x files for AB Programmable logic controllers. The L5x file include ready to use  ladder logic for the system based on the I/O points.</p>
+    
+    
 ## How It Work
 
-* Using API
-* Uploading the Xlx file
+* Either Using API Getting the needed information from Revit software
+  <p>OR</p>
+* Uploading a standard Xlsx device list & I/O points based on the engineering drawing of the SCADA system
+  <p></p>
+    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    
+    <h3><p>Receive the following:</p></h3>
+    
+    * <p>The DB file for the SCADA system</p>
+    
+    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    
+    * <p>The TGD files for all the devices in the SCADA system</p>
+    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
+    
+    * <p>The L5x file  containing the standard baseload of the SCADA system</p>
+    
+    <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
 
 
 
 > **Note**
-> This is only the phase two of the code and does not include the full version.
+> This is only  phase two of the code and does not include the full version.
 
 
 ## CodeFlow
+The process is based on tree inheritance from multiple classes, which are converted and manipulated into Pandas frames into standard signals for different devices.
+See the Picture below
 
-See the Picture below.
 
 
 
