@@ -4,7 +4,7 @@
   <br>
   <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Markdownify" width="200">
   <br>
-  Development Tools
+  Development Technologies 
   <br>
 </h1>
 
