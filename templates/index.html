@@ -1,0 +1,44 @@
+{% extends('layout/layout.html') %}
+
+{% block content %} 
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery-validation-min.js"></script>
+	<script src="static/js/scripts.js"></script>
+
+	<script>
+		var csrf_token = "{{ csrf_token() }}";
+
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				}
+			}
+		});
+	</script>
+	{% include('parts/content.html') %}
+{% endblock %}
+
+
+{% block partial_html %}
+
+	{% include('parts/intro.html') %}
+	{% include('parts/work.html') %}
+	{% include('parts/about.html') %}
+	{% include('parts/contact.html') %}
+	{% if 'user_id' not in session %}
+		{% include('parts/login.html') %}
+		{% include('parts/register.html') %}
+	{% endif %}
+	{% include('parts/lateruse.html') %}
+
+	<script src="static/js/browser.min.js"></script>
+	<script src="static/js/breakpoints.min.js"></script>
+	<script src="static/js/util.js"></script>
+	<script src="static/js/main.js"></script>
+{% endblock %}
+
+
+
+
+

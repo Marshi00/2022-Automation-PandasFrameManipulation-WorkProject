@@ -1,0 +1,120 @@
+<header id="header">
+    <div class="logo">
+        <span class="icon fa-gem"></span>
+    </div>
+    <div class="content">
+        <div class="inner">
+            {% if 'user_id' not in session %}
+
+                <h1>W-WW Automation</h1>
+                <p>An Automated software template designed to exhilarate<br />
+                the programming stage of SCADA systems by automating the standard procedures.</p>
+
+            {% else %}
+                <button onclick="triggerUploadFile()" id="uploadFileBtn" class=""> Upload your excel file </button>
+                <input type="file" onchange="uploadFile()" id="file"  name="file" accept="application/xlsx" hidden>
+                <div class="percent" id="percent_element" style="display: none">0%</div>
+                <p><a href="" id="download_link" style="display: none;">
+                    {% if value_limit_download_result is not none and value_limit_download_result == true %}    
+                        {{'You reached Your download limit for your latest result!'}}
+                    {% else %}
+                        {{'Your download link is ready.'}}
+                    {% endif %}</a></p>
+                <script>
+                    function triggerUploadFile(){
+                        document.getElementById('file').click();
+                    }
+                    function uploadFile(){
+
+                        var formData = new FormData();
+                        formData.append('file', $('#file')[0].files[0]);
+                        percent_element.style.display = 'block';
+                        var download_link = document.getElementById('download_link');
+                        download_link.style.display = 'none';
+                        $.ajax({
+                            xhr: function() {
+                                var xhr = new window.XMLHttpRequest();
+                                xhr.upload.addEventListener("progress", function(evt) {
+                                    if (evt.lengthComputable) {
+                                        var percentComplete = (evt.loaded / evt.total) * 100;
+                                        percent_element.innerText = percentComplete + '%';
+                                        if(percentComplete == 100){
+                                            percent_element.innerText = 'Processing...';
+                                        }
+
+                                    }
+                                }, false);
+                                return xhr;
+                            },
+                            type: 'POST',
+                            url: "{{url_for('upload_template')}}",
+                            processData: false,  // tell jQuery not to process the data
+                            contentType: false,  // tell jQuery not to set contentType
+                            data: formData,
+                            error:function(){
+                                percent_element.innerText = "Something went wrong!";
+                                percent_element.className = "text-danger";
+                                return;
+                            },
+                            success: function(json){
+                                if(json['error'] == true){
+                                    percent_element.innerText = json['msg'];
+                                    percent_element.className = "text-warning";
+                                }else{
+                                    percent_element.innerText = json['msg'];
+                                    percent_element.className = "text-success";
+                                    download_link.style.display = 'block';
+                                    var eventDataBaseUrl = "{{ url_for('download_result',result = 'file_name') }}"
+                                    var actualDataUrl = eventDataBaseUrl.replace(/file_name/, json['file_name']);
+                                    download_link.href = actualDataUrl;
+                                }
+                            }
+                        });
+                    }
+                    
+                </script>
+                {% if value_limit_download_template == True %}
+                    <p>Need template ? <a href="{{url_for('download_template')}}" onclick="downloadTemplate()">Click</a></p>
+                {% else %}
+                    <br>
+                    <span>You reached ur limit u cant download template more than 3 times</span>
+                {% endif %}
+            {% endif %}
+
+        </div>
+        
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#work">How it work</a></li>
+            <!--
+            <li><a href="#lateruse">Request Access</a></li>
+            -->
+            <li><a href="#contact">Contact Me</a></li>
+            {% if 'user_id' not in session %}
+
+                <li><a href="#login">Log in</a></li>
+                <li><a href="#register">Register</a></li>
+            {% else %}
+                <li><a onclick="logout()" href="#" id="logout_btn">Logout</a></li>
+                <script>
+                 function logout() {
+         
+                     $.ajax({
+                         type: "POST",
+                         url: "{{url_for('logout')}}",
+                         success: function (json) {
+                            deleteCookie('logged_in');
+                            window.location = '/';
+                            logout_btn.setAttribute('onclick','');
+                         }
+                     });
+         
+         
+                 }
+             </script>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

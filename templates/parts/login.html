@@ -1,0 +1,120 @@
+
+<article id="login">
+    <h2 class="major">Log In</h2>
+
+    <section>
+        <div class="text-center">
+            <p id="errors_login" ></p>
+        </div>
+        <form method="post"  id="FORM_LOGIN" onsubmit=" return false;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="fields">
+                <div class="field half">
+                    <label for="email_login">Email</label>
+                    <input type="email" name="email_login" id="email_login" placeholder="Email@email.com" />
+                </div>
+                <div class="field half">
+                    <label for="password_login">Password</label>
+                    <input type="password" name="password_login" id="password_login" placeholder="********" />
+                </div>
+
+            </div>
+            <ul class="actions">
+                <li><button onclick="login()" id="loginButton" class="primary"> Log in </button></li>
+                <li><input type="reset" value="Reset" /></li>
+            </ul>
+            <span>Dont have account ? <a href="#register">register</a></span>
+        </form>
+    </section>
+    <section>
+        <h3 class="major">Don't Have access ?</h3>
+        <p>Email me at : <b>Mohammad.Arshian@WSP.com</b><br>
+        If it's urgent try to reach me at : <b>Marshian0048@outlook.com</b> </p>
+    </section>
+
+    <script>
+           $(document).ready(function () {
+
+                var email_login = document.getElementById('email_login');
+                var password_login = document.getElementById('password_login');
+
+                $("#FORM_LOGIN").validate({
+                    rules: {
+                        email_login: {
+                            required: true,
+                            email: true,
+                            minlength: 5
+                        }, 
+                        password_login: {
+                            required: true,
+                            minlength: 8
+                        }, 
+                    },
+                    messages: {
+                        email_login: {
+                            required: "Email is required!",
+                            minlength: 'Email is not valid!',
+                            email: 'Email is not valid!',
+                        },
+                        password_login: {
+                            required: "Password is required!",
+                            minlength: 'Password is not valid!',
+                        },
+                    },
+
+                    submitHandler: function (form, e) {
+                        console.log(form);
+                        console.log(e);
+                        login();
+                    },
+                    errorElement: 'span',
+                    errorClass: "is-invalid",
+                    validClass: 'is-valid',
+                    errorPlacement: function (error, element) {
+                        error.insertAfter(element).addClass('invalid-feedback');
+                    },
+                });
+                function login() {
+
+                    var email_login = document.getElementById('email_login');
+                    var password_login = document.getElementById('password_login');
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "email": email_login.value,
+                            "password": password_login.value
+                        },
+                        url: "{{url_for('login')}}",
+                        // error:function(error){
+                        //     console.log(error);
+                        //     errors_login.innerText = "Something went wrong!";
+                        //     errors_login.className = "alert alert-danger";
+                        //     password.value = '';
+                        //     return;
+                        // },
+                        success: function (json) {
+                            if (json['error'] == true) {
+                                errors_login.innerText = json['msg'];
+                                errors_login.className = "alert alert-warning";
+                                password_login.value = '';
+                                return;
+                            } else {
+                                loginButton.disabled = true;
+                                errors_login.innerText = json['msg'];
+                                errors_login.className = "alert alert-success";
+                                setCookie("logged_in", true, 1);
+                                window.location = "/";
+                                return;
+                            }
+                        }
+                    });
+
+
+                    }
+
+            });
+ 
+    </script>
+</article>

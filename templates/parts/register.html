@@ -1,0 +1,137 @@
+
+<article id="register">
+    <h2 class="major">Register</h2>
+
+    <section>
+        <div class="text-center">
+            <p id="errors_register" ></p>
+        </div>
+        <form method="post" action="" id="FORM_REGISTER" onsubmit=" return false;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="fields">
+                <div class="field half">
+                    <label for="email_register">Email</label>
+                    <input type="email" name="email_register" id="email_register" placeholder="Email@email.com" />
+                </div>
+                <div class="field half">
+                    <label for="password_register">Password</label>
+                    <input type="password" name="password_register" id="password_register" placeholder="********" />
+                </div>
+                <div class="field">
+                    <label for="name_user_register">Name</label>
+                    <input type="text" name="name_user_register" id="name_user_register" placeholder="John Smith" />
+                </div>
+                <div class="field">
+                    <label for="demo-category">Department</label>
+                    <select name="department_register" id="department_register">
+                        {% for department in departments %}
+                            <option value="{{department[0]}}">{{department[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><button onclick="register()" id="registerButton" class="primary"> Register </button></li>
+                <li><input type="reset" value="Reset" /></li>
+            </ul>
+            <span>Already have account ? <a href="#login">Login</a></span>
+        </form>
+    </section>
+    <script>
+           $(document).ready(function () {
+
+                $("#FORM_REGISTER").validate({
+                    rules: {
+                        email_register: {
+                            required: true,
+                            email: true,
+                            minlength: 5,
+                        }, 
+                        password_register: {
+                            required: true,
+                            minlength: 8
+                        }, 
+                        name_user_register : {
+                            required:true,
+                            minlength:3,
+                        },
+                        department_register: {
+                            required:true,
+                            number: true
+                        },
+
+                    },
+                    messages: {
+                        email_register: {
+                            required: "Email is required!",
+                            minlength: 'Email is not valid!',
+                            email: 'Email is not valid!',
+                        },
+                        password_register: {
+                            required: "Password is required!",
+                            minlength: 'Password must be at least 8 characters',
+                        },
+                        name_user_register: {
+                            required: "Name is required!",
+                            minlength: 'Name must be at least 3 characters',
+                        },
+                        department_register: {
+                            required: "Department is required!",
+                            number: 'Department has to be numeric',
+                        },
+                    },
+
+                    submitHandler: function (form, e) {
+                        register();
+                    },
+                    errorElement: 'span',
+                    errorClass: "is-invalid",
+                    validClass: 'is-valid',
+                    errorPlacement: function (error, element) {
+                        error.insertAfter(element).addClass('invalid-feedback');
+                    },
+                });
+                function register() {
+
+                    var email_register = document.getElementById('email_register');
+                    var password_register = document.getElementById('password_register');
+                    var name_user_register = document.getElementById('name_user_register');
+                    var department_register = document.getElementById('department_register');
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "email": email_register.value,
+                            "password": password_register.value,
+                            "name": name_user_register.value,
+                            "department": department_register.value,
+                        },
+                        url: "{{url_for('register')}}",
+                        // error:function(error){
+                        //     console.log(error);
+                        //     errors_register.innerText = "Something went wrong!";
+                        //     errors_register.className = "alert alert-danger";
+                        //     password.value = '';
+                        //     return;
+                        // },
+                        success: function (json) {
+                            if (json['error'] == true) {
+                                errors_register.innerText = json['msg'];
+                                errors_register.className = "alert alert-warning";
+                                password_register.value = '';
+                                return;
+                            } else {
+                                registerButton.disabled = true;
+                                errors_register.innerText = json['msg'];
+                                errors_register.className = "alert alert-success";
+                                window.location = "/";
+                                return;
+                            }
+                        }
+                    });
+                }
+
+            });
+    </script>
+</article>
