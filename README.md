@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Markdownify" width="200">
+  <img src="static/images/gg1.jpg"  width="1100">
   <br>
   Development Technologies 
   <br>
@@ -84,7 +84,11 @@ See requirements.txt
 
 ## Screen
 
-<img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Markdownify" width="200">
+<img src="static/images/gg1.jpg"  width="1100">
+<img src="static/images/gg2.jpg"  width="1100">
+<img src="static/images/gg3.jpg"  width="1100">
+<img src="static/images/gg4.jpg"  width="1100">
+<img src="static/images/gg5.jpg"  width="1100">
 
 
 
