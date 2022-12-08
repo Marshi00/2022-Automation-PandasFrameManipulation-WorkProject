@@ -13,6 +13,7 @@
 <p align="center">
   <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"  />
   <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/2369/2369466.png"  />
+  <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/1199/1199124.png"  />
   <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/288/288882.png" />
   <img width="75px" hspace="20" src="https://cdn-icons-png.flaticon.com/512/8167/8167819.png"  />
   <img width="75px" hspace="20" height="75" src="https://www.kindpng.com/picc/m/188-1882416_flask-python-logo-hd-png-download.png" alt="Flask Python Logo, HD Png Download@kindpng.com"  />
